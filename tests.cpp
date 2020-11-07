@@ -5,7 +5,7 @@
 
 TEST_CASE("wyniki sie nie powtarzaja (pierwsze 10)")
 {
-  MT::MersenneTwister generator(1);
+  auto generator = MT::mt19937(1);
 
   std::vector<uint32_t> wyniki;
   for(size_t i = 0; i < 10; i++)
@@ -20,8 +20,8 @@ TEST_CASE("wyniki sie nie powtarzaja (pierwsze 10)")
 
 TEST_CASE("wyniki sa takie same dla tego samego seedu")
 {
-  MT::MersenneTwister a(1);
-  MT::MersenneTwister b(1);
+  auto a = MT::mt19937(1);
+  auto b = MT::mt19937(1);
 
   /* sprawdza 10 pierwszych wynikow */
   for(size_t i = 0; i < 10; i++)
@@ -30,8 +30,8 @@ TEST_CASE("wyniki sa takie same dla tego samego seedu")
  
 TEST_CASE("wyniki sa takie same dla tego samego seedu, mieszajac oba w kazdym kroku")
 {
-  MT::MersenneTwister a(1);
-  MT::MersenneTwister b(1);
+  auto a = MT::mt19937(1);
+  auto b = MT::mt19937(1);
 
   /* sprawdza 10 pierwszych wynikow */
   for(size_t i = 0; i < 10; i++)

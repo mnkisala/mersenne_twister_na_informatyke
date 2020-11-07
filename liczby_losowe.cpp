@@ -4,7 +4,12 @@
 
 int main()
 {
-  auto generator = MT::MersenneTwister(time(NULL));
+  MT::mt19937::type seed;
+  std::cout << "podaj seed ( 0 = time(NULL) ): ";
+  std::cin >> seed;
+  if(seed == 0) seed = time(NULL);
+   
+  auto generator = MT::mt19937(seed);
 
   size_t n;
   std::cout << "ile liczb pseudolosowych wygenerowac: ";
