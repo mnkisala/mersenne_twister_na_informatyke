@@ -12,21 +12,6 @@ namespace MT
       numbers[i] = 69069 * numbers[i-1];
     }
   }
-
-  /*
-    function twist() {
-     for i from 0 to (n-1) {
-         int x := (MT[i] and upper_mask)
-                   + (MT[(i+1) mod n] and lower_mask)
-         int xA := x >> 1
-         if (x mod 2) != 0 { // lowest bit of x is 1
-             xA := xA xor a
-         }
-         MT[i] := MT[(i + m) mod n] xor xA
-     }
-     index := 0
- }
- */
    
   void MersenneTwister::twist()
   {

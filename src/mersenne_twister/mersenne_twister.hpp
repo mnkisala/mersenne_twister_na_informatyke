@@ -5,15 +5,6 @@
 #include <cstddef>
 #include <cinttypes>
  
-/* MT_19937 32bit
-  (w, n, m, r) = (32, 624, 397, 31)
-  a = 0x9908B0DF
-  (u, d) = (11, 0xFFFFFFFF)
-  (s, b) = (7, 0x9D2C5680)
-  (t, c) = (15, 0xEFC60000)
-  l = 18
-*/
- 
 namespace MT
 {
   constexpr uint32_t W = 32;

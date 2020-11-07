@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 if(MSVC)
   add_compile_options(/W4)
 else()
-  add_compile_options(-Wall -Wextra -pedantic)
+  add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
  
 # biblioteka
@@ -25,3 +25,9 @@ add_executable(tests
 target_link_libraries(tests PRIVATE catch2)
 target_link_libraries(tests PRIVATE mersenne_twister)
 add_test(tests tests)
+
+# demo
+add_executable(liczby_losowe
+  liczby_losowe.cpp
+)
+target_link_libraries(liczby_losowe PRIVATE mersenne_twister)
