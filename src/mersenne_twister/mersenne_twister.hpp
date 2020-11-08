@@ -10,10 +10,10 @@ namespace MT
   template<typename Type, 
            size_t W, size_t N, size_t M, size_t R,
            Type A,
-           Type U, Type D,
-           Type S, Type B,
-           Type T, Type C,
-           Type L>
+           size_t U, Type D,
+           size_t S, Type B,
+           size_t T, Type C,
+           size_t L>
   class MersenneTwister
   {
     public:
@@ -55,7 +55,7 @@ namespace MT
       {
         numbers[0] = seed;
         for(size_t i = 1; i < N; i++)
-          numbers[i] = (69069 * numbers[i-1]) & first_w_bits_mask;
+          numbers[i] = (static_cast<Type>(69069) * numbers[i-1]) & first_w_bits_mask;
       }
          
       void twist()

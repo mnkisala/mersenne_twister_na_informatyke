@@ -20,8 +20,9 @@ TEST_CASE("wyniki sie nie powtarzaja (pierwsze 10)", "32bit")
 
 TEST_CASE("wyniki sa takie same dla tego samego seedu", "32bit")
 {
-  auto a = MT::mt19937(1);
-  auto b = MT::mt19937(1);
+  auto seed = time(NULL);
+  auto a = MT::mt19937(seed);
+  auto b = MT::mt19937(seed);
 
   /* sprawdza 10 pierwszych wynikow */
   for(size_t i = 0; i < 10; i++)
@@ -30,8 +31,9 @@ TEST_CASE("wyniki sa takie same dla tego samego seedu", "32bit")
  
 TEST_CASE("wyniki sa takie same dla tego samego seedu, mieszajac oba w kazdym kroku", "32bit")
 {
-  auto a = MT::mt19937(1);
-  auto b = MT::mt19937(1);
+  auto seed = time(NULL);
+  auto a = MT::mt19937(seed);
+  auto b = MT::mt19937(seed);
 
   /* sprawdza 10 pierwszych wynikow */
   for(size_t i = 0; i < 10; i++)
@@ -59,8 +61,9 @@ TEST_CASE("wyniki sie nie powtarzaja (pierwsze 10) x64", "64bit")
 
 TEST_CASE("wyniki sa takie same dla tego samego seedu x64", "64bit")
 {
-  auto a = MT::mt19937_64(1);
-  auto b = MT::mt19937_64(1);
+  auto seed = time(NULL);
+  auto a = MT::mt19937_64(seed);
+  auto b = MT::mt19937_64(seed);
 
   /* sprawdza 10 pierwszych wynikow */
   for(size_t i = 0; i < 10; i++)
@@ -69,8 +72,9 @@ TEST_CASE("wyniki sa takie same dla tego samego seedu x64", "64bit")
  
 TEST_CASE("wyniki sa takie same dla tego samego seedu, mieszajac oba w kazdym kroku x64", "64bit")
 {
-  auto a = MT::mt19937_64(1);
-  auto b = MT::mt19937_64(1);
+  auto seed = time(NULL);
+  auto a = MT::mt19937_64(seed);
+  auto b = MT::mt19937_64(seed);
 
   /* sprawdza 10 pierwszych wynikow */
   for(size_t i = 0; i < 10; i++)
