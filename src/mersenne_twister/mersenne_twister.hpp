@@ -21,7 +21,7 @@ namespace MT
       using type = Type;
 
     private:
-      std::array<Type, N> numbers;
+      std::array<Type, N> state;
       size_t index;
 
       static constexpr Type lower_mask = (static_cast<Type>(1) << R) - 1;
@@ -50,25 +50,24 @@ namespace MT
         return value;
       }
        
-    public: 
-      MersenneTwister(Type seed)
+    public: MersenneTwister(Type seed)
         : index(N)
       {
-        numbers[0] = seed & first_w_bits_mask;
+        state[0] = seed & first_w_bits_mask;
         for(size_t i = 1; i < N; i++)
-          numbers[i] = (F * (numbers[i-1] ^ numbers[i-1] >> (W - 2)) + i) & first_w_bits_mask;
+          state[i] = (F * (state[i-1] ^ state[i-1] >> (W - 2)) + i) & first_w_bits_mask;
       }
          
       void twist()
       {
         for(size_t i = 0; i < N; i++)
         {
-          Type x = (numbers[i] & upper_mask) + (numbers[i+1 % N] & lower_mask);
+          Type x = (state[i] & upper_mask) + (state[i+1 % N] & lower_mask);
           Type xA = x >> 1;
           if(x % 2 != 0) 
             xA ^= A;
 
-          numbers[i] = numbers[(i + M) % N] ^ xA;
+          state[i] = state[(i + M) % N] ^ xA;
         }
 
         index = 0;
@@ -79,7 +78,7 @@ namespace MT
         if(index == N)
           twist();
          
-        return temper(numbers[index++]) & first_w_bits_mask;
+        return temper(state[index++]) & first_w_bits_mask;
       }
   };
 
