@@ -10,13 +10,10 @@ else()
 endif()
  
 # biblioteka
-add_library(mersenne_twister
-  src/mersenne_twister/mersenne_twister.cpp
-  src/mersenne_twister/mersenne_twister.hpp
-)
+add_library(mersenne_twister INTERFACE)
 target_include_directories(mersenne_twister INTERFACE src/)
 
-# testy jednostkowe
+# testy
 enable_testing()
 add_subdirectory(catch)
 add_executable(tests
