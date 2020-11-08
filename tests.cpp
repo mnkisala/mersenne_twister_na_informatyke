@@ -3,6 +3,12 @@
 
 #include <vector>
 
+TEST_CASE("pierwszy wynik dla seedu 1 jest poprawny", "32bit")
+{
+  auto generator = MT::mt19937(1);
+  REQUIRE(generator.next() == 1791095845);
+}
+
 TEST_CASE("wyniki sie nie powtarzaja (pierwsze 10)", "32bit")
 {
   auto generator = MT::mt19937(1);

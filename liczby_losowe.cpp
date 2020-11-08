@@ -4,7 +4,7 @@
 
 int main()
 {
-  MT::mt19937_64::type seed;
+  MT::mt19937::type seed;
     std::cout << "podaj seed ( 0 = time(NULL) ): ";
     std::cin >> seed;
     if(seed == 0) 
@@ -14,7 +14,7 @@ int main()
     std::cout << "ile liczb pseudolosowych wygenerowac: ";
     std::cin >> n;
 
-  auto generator = MT::mt19937_64(seed);
+  auto generator = MT::mt19937(seed);
   for(size_t i = 0; i < n; i++)
     std::cout << generator.next() << '\n';
 }

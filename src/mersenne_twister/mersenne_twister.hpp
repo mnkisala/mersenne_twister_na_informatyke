@@ -10,6 +10,7 @@ namespace MT
   template<typename Type, 
            size_t W, size_t N, size_t M, size_t R,
            Type A,
+           size_t F,
            size_t U, Type D,
            size_t S, Type B,
            size_t T, Type C,
@@ -45,7 +46,7 @@ namespace MT
         value ^= (value >> U) & D;
         value ^= (value << S) & B;
         value ^= (value << T) & C;
-        value ^= (value >> 1);
+        value ^= (value >> L);
         return value;
       }
        
@@ -53,9 +54,9 @@ namespace MT
       MersenneTwister(Type seed)
         : index(N)
       {
-        numbers[0] = seed;
+        numbers[0] = seed & first_w_bits_mask;
         for(size_t i = 1; i < N; i++)
-          numbers[i] = (static_cast<Type>(69069) * numbers[i-1]) & first_w_bits_mask;
+          numbers[i] = (F * (numbers[i-1] ^ numbers[i-1] >> (W - 2)) + i) & first_w_bits_mask;
       }
          
       void twist()
@@ -78,17 +79,14 @@ namespace MT
         if(index == N)
           twist();
          
-        Type y = numbers[index];
-         
-        index++;
-         
-        return temper(y) & first_w_bits_mask;
+        return temper(numbers[index++]) & first_w_bits_mask;
       }
   };
 
   using mt19937 = MersenneTwister<uint32_t,
                                   32, 624, 397, 31,
                                   0x9907B0DF,
+                                  1812433253,
                                   11, 0xFFFFFFFF,
                                   7 , 0x9D2C5680,
                                   15, 0xEFC60000,
@@ -97,6 +95,7 @@ namespace MT
   using mt19937_64 = MersenneTwister<uint64_t, 
                                      64, 312, 156, 31,
                                      0xB5026F5AA96619E9,
+                                     1812433253,
                                      29, 0x5555555555555555,
                                      17, 0x71D67FFFEDA60000,
                                      37, 0xFFF7EEE000000000,
