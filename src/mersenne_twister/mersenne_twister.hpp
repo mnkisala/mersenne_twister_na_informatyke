@@ -8,7 +8,7 @@
 namespace MT
 {
   template<typename Type, 
-           Type W, Type N, Type M, Type R,
+           size_t W, size_t N, size_t M, size_t R,
            Type A,
            Type U, Type D,
            Type S, Type B,
